@@ -23,4 +23,4 @@ def getdata(year: int):
         df = pd.read_csv(linkurl, sep=',')
 
         table = pa.Table.from_pandas(df)
-        pq.write_table(table, f"nyc_yellow{year}-{month}.parquet")
+        pq.write_table(table, f"../avgdrive/nyc_yellow{year}-{month}.parquet")
