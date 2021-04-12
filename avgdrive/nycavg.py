@@ -22,8 +22,10 @@ def roll_avg(year: int, start_month: int, end_month: int):
         raise ValueError("Please provide a Year between 2018-2020")
     if not 1 <= start_month <= 12 and 1 <= end_month <= 12:
         raise ValueError("Please provide months as integer")
-    if start_month > end_month:
+    if start_month >= end_month:
         raise ValueError("you provided end_month earlier than start_month!")
+    if (end_month-start_month) <=1:
+        raise ValueError("For a 45day rolling average, at least two months are needed!")
     for month in range(start_month, end_month+1):
         df = pq.read_pandas(f'nyc_yellow{year}-{month}.parquet',
                             columns=['tpep_pickup_datetime', 'trip_distance']).to_pandas()
@@ -38,7 +40,7 @@ def roll_avg(year: int, start_month: int, end_month: int):
     return roll45mean
 
 
-# d = roll_avg(2020, 1, 3)
-# print(d)
+d = roll_avg(2020, 1, 3)
+print(d)
 
 # print(calcavg_month(2018, 13))
