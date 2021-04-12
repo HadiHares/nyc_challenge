@@ -1,7 +1,5 @@
 import pandas as pd
-import pyarrow as pa
 import pyarrow.parquet as pq
-from prepare import getdata
 
 
 def calcavg_month(year: int, month: int):
@@ -38,9 +36,3 @@ def roll_avg(year: int, start_month: int, end_month: int):
     appended_data = pd.concat(appended_data)
     roll45mean = appended_data.trip_distance.rolling(window=45).mean()
     return roll45mean
-
-
-d = roll_avg(2020, 1, 3)
-print(d)
-
-# print(calcavg_month(2018, 13))
