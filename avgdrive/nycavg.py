@@ -6,14 +6,13 @@ from prepare import getdata
 
 def calcavg_month(year: int, month: int):
     if not 2018 <= year <= 2020:
-        raise ValueError("Please provide a Year between 2018-2020")
+        raise ValueError("Please provide a Year as integer and between 2018-2020!")
     if not 1 <= month <= 12:
-        raise ValueError("Please provide months as integer")
-    val = int(month)
-    df = pq.read_pandas(f'nyc_yellow{year}-{val}.parquet',
+        raise ValueError("Please provide months as integer or between 1 and 12!")
+    df = pq.read_pandas(f'nyc_yellow{year}-{month}.parquet',
                         columns=['tpep_pickup_datetime', 'tpep_dropoff_datetime', 'trip_distance']).to_pandas()
     month_avg = df['trip_distance'].mean()
-    return f"Average Trip length for the month {val} is " + str(round(month_avg, 2)) + " miles"
+    return f"Average Trip length for the input {year}-{month} is " + str(round(month_avg, 2)) + " miles"
 
 
 
@@ -41,3 +40,5 @@ def roll_avg(year: int, start_month: int, end_month: int):
 
 # d = roll_avg(2020, 1, 3)
 # print(d)
+
+# print(calcavg_month(2018, 13))
