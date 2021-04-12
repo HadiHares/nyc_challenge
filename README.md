@@ -2,7 +2,11 @@ NYC Yellow Taxi Challenge:
 ================================
 
 #### Disclaimer:
-*For this challenge i used the data "as-is" from the website. During my analysis i saw some data quality issues, which delivers averages for a certain month with a date outside of the month. But the data quality issues is not the focus here. We assume IF data quality is perfect, current issues would not be visible.*
+*For this challenge i used the data "as-is" from the website. During my analysis i saw some data quality issues, which delivers averages for a certain month with some date outside of the month. But the data quality issues is not the focus here. We assume IF data quality is perfect, current issues would not be visible. From unit tests point of view, i know it is really basic (not optimal) and needs some more tweaking.*
+
+### Issues:
+
+- After loading parquet files, there are rows of data outside of the time range of the specific month. This leads specially in the 45 rolling average to some errors. 
 
 ### Remark:
 
